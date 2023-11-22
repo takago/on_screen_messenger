@@ -17,13 +17,13 @@ cmd ='nc -u localhost %d -q0' % args.port
 
 if args.translate=='jp2en':
     os.environ['DEEPL_API_KEY'] = args.key
-    cmd = ' | '.join( [PYTHON+' -u deepl_jp2en.py', cmd])
+    cmd = ' | '.join( [PYTHON+' -u sub/deepl_jp2en.py', cmd])
 elif args.translate=='en2jp':
     os.environ['DEEPL_API_KEY'] = args.key
-    cmd = ' | '.join( [PYTHON+' -u deepl_en2jp.py', cmd])
+    cmd = ' | '.join( [PYTHON+' -u sub/deepl_en2jp.py', cmd])
 
 if args.mic == True:
-    cmd = ' | '.join( [PYTHON+' -u whisper_mic_jp.py' ,cmd] )
+    cmd = ' | '.join( [PYTHON+' -u sub/whisper_mic_jp.py' ,cmd] )
 
 print('-'*len(cmd))
 print(cmd)
