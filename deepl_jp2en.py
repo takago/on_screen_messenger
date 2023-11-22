@@ -1,5 +1,3 @@
-#! python3 -u
-
 import deepl
 import os
 

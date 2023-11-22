@@ -1,7 +1,6 @@
-#! python3
-
-# 鷹合研(2023,11/22)
+# 鷹合研(2023,11/23)
 #
+# 簡単なテスト
 # echo "Hello" | nc -u localhost 10000 -q 0
 # fortune | nc -u localhost 10000 -q0
 

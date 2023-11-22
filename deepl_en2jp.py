@@ -1,5 +1,3 @@
-#! python3 -u
-
 import deepl
 
 translator = deepl.Translator(os.getenv('DEEPL_API_KEY'))
