@@ -30,6 +30,9 @@ python ./on_screen_messenger.py &
 ```
 
 ```
+fortune | nc -u localhost 10000 -q0
+cowsay Hello | nc -u localhost 10000 -q0
+
 ~/miniconda3/envs/wp000/bin/python demo.py --mic
 (喋った日本語が，スクリーンに表示される)
 
