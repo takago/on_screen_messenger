@@ -11,9 +11,11 @@ Qtを使ってスクリーン上にメッセージを表示するツールを開
 
 利用例：
  - 緊急地震速報といった重要な情報を表示する．
- - Zoom音声や，マイクで拾った音を文字起こし（必要に応じて翻訳）して表示する(OpenAIのwhisperや，DeepL-APIを使うと簡単です)．
+ - マイクで拾った音を文字起こし（必要に応じて翻訳）して表示する(OpenAIのwhisperや，DeepL-APIを使うと簡単です)．
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot00.png)
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot01.png)
+  - PCで鳴っている音声を文字起こ
+   - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot02.png)
 
 
 ----
@@ -24,7 +26,7 @@ cd on_screen_messenger
 ```
 
 ```
-./on_screen_messenger.git &
+python ./on_screen_messenger.py &
 （システムトレイ上に常駐する）
 ```
 
