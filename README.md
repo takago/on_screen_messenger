@@ -1,7 +1,7 @@
 # on_screen_messenger
 This tool displays messages on the desktop.
 
-![](https://youtu.be/0LAD8-ASEgw)
+https://youtu.be/0LAD8-ASEgw
 
 ----
 ## インストール
