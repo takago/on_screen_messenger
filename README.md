@@ -1,7 +1,7 @@
 # on_screen_messenger
 This tool displays messages on the desktop.
 
-Qtを使ってスクリーン上にメッセージを表示するツールを開発しました．
+Qtを使ってスクリーン上にメッセージを表示するツールを開発しました．例によってLinuxで作りましたが，多分Windowsでも動くと思います．
 どのような感じで動くかは動作は以下のビデオを参考にしてください． https://youtu.be/0LAD8-ASEgw
 
 長所？：
