@@ -30,10 +30,10 @@ python ./on_screen_messenger.py &
 ```
 
 ```
-~/miniconda3/envs/wp000/bin/pythondemo.py --mic
+~/miniconda3/envs/wp000/bin/python demo.py --mic
 (喋った日本語が，スクリーンに表示される)
 
-~/miniconda3/envs/wp000/bin/pythondemo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
+~/miniconda3/envs/wp000/bin/python demo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
 (タイプした英語が日本語になって，スクリーンに表示される)
 
 ~/miniconda3/envs/wp000/bin/python ./demo.py --mic --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
