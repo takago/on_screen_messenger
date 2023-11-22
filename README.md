@@ -14,9 +14,8 @@ Qtを使ってスクリーン上にメッセージを表示するツールを開
  - マイクで拾った音を文字起こし（必要に応じて翻訳）して表示する(OpenAIのwhisperや，DeepL-APIを使うと簡単です)．
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot00.png)
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot01.png)
-  - PCで鳴っている音声を文字起こ
+  - PCで鳴っている音声を文字起こし
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot02.png)
-
 
 ----
 ## 実行方法（書くのが面倒なのでかなりテキトウです）
