@@ -9,13 +9,14 @@ https://youtu.be/0LAD8-ASEgw
 git clone https://github.com/takago/on_screen_messenger.git
 cd on_screen_messenger
 
-# 設定と，起動
+./on_screen_messenger.git &
 
-vi demo.py 
-  (1) DEEPL_API_KEYパスを編集
-  (2) PYTHONパスを編集(whisper-micやdeeplが使えるPythonにする)
+~/miniconda3/envs/wp000/bin/python ./demo.py --mic --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
+（喋った日本語が英語になって，スクリーンに表示される）
 
-on_screen_messenger.git &
-./demo.py --mic --translate=jp2en  （←喋った日本語が英語になって，スクリーンに表示される）
-./demo.py --translate=jp2en (←タイプした日本語が英語になって，スクリーンに表示される)
+~/miniconda3/envs/wp000/bin/pythondemo.py --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
+(タイプした日本語が英語になって，スクリーンに表示される)
+
+~/miniconda3/envs/wp000/bin/pythondemo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
+(タイプした英語が日本語になって，スクリーンに表示される)
 ```
