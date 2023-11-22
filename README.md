@@ -3,6 +3,8 @@ This tool displays messages on the desktop.
 
 Qt/whisper-mic/deepl-apiを使ってスクリーン上にメッセージを表示するツールを作成した．
 
+![](https://github.com/takago/on_screen_messenger/blob/main/screenshot00.png)
+![](https://github.com/takago/on_screen_messenger/blob/main/screenshot01.png)
 https://youtu.be/0LAD8-ASEgw
 
 ----
