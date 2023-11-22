@@ -41,3 +41,7 @@ cd on_screen_messenger
 ~/miniconda3/envs/wp000/bin/python ./demo.py --mic --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
 （喋った日本語が英語になって，スクリーンに表示される．Python は whisper-micやdeeplが使えるパスを指定すること！）
 ```
+
+----
+## メモ
+whisper-micを使って音声入力するときはヘッドセットを使うとよいかも
