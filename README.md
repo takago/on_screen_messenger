@@ -5,13 +5,13 @@ Qt/whisper-mic/deepl-apiを使ってスクリーン上にメッセージを表�
 動作は以下のビデオを参考にしてください． https://youtu.be/0LAD8-ASEgw
 
 長所：
-・透過的になっているので，デスクトップの操作は従来どおり可能．
-・最前面に表示（何かをフルスクリーン表示していてもその上に描画される）.
+ - 透過的になっているので，デスクトップの操作は従来どおり可能．
+ -最前面に表示（何かをフルスクリーン表示していてもその上に描画される）.
 
 利用例：
-・緊急地震速報といった重要な情報を表示する．
-・マイクで拾った音をそのまま文字起こしして表示する．
-・外国語のスピーチを翻訳して表示する（OpenAIのwhisperと，DeepL-APIを使えば簡単にできる）．
+ - 緊急地震速報といった重要な情報を表示する．
+ - マイクで拾った音を文字起こしして表示する．
+ - 外国語のスピーチを翻訳して表示する（OpenAIのwhisperと，DeepL-APIを使えば簡単にできる）．
 
 ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot00.png)
 ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot01.png)
@@ -22,10 +22,14 @@ Qt/whisper-mic/deepl-apiを使ってスクリーン上にメッセージを表�
 ```
 git clone https://github.com/takago/on_screen_messenger.git
 cd on_screen_messenger
+```
 
+```
 ./on_screen_messenger.git &
 （システムトレイ上に常駐する）
+```
 
+```
 ~/miniconda3/envs/wp000/bin/pythondemo.py --mic
 (喋った日本語が，スクリーンに表示される)
 
@@ -37,6 +41,4 @@ cd on_screen_messenger
 
 ~/miniconda3/envs/wp000/bin/python ./demo.py --mic --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
 （喋った日本語が英語になって，スクリーンに表示される．Python は whisper-micやdeeplが使えるパスを指定すること！）
-
-
 ```
