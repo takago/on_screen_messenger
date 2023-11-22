@@ -2,7 +2,7 @@
 This tool displays messages on the desktop.
 
 Qt/whisper-mic/deepl-apiを使ってスクリーン上にメッセージを表示するツールを開発しました．
-動作は以下のビデオを参考にしてください． https://youtu.be/0LAD8-ASEgw
+どのような感じで動くかは動作は以下のビデオを参考にしてください． https://youtu.be/0LAD8-ASEgw
 
 長所：
  - 透過的になっているので，デスクトップの操作は従来どおり可能．
@@ -11,14 +11,14 @@ Qt/whisper-mic/deepl-apiを使ってスクリーン上にメッセージを表�
 利用例：
  - 緊急地震速報といった重要な情報を表示する．
  - マイクで拾った音を文字起こしして表示する．
- - 外国語のスピーチを翻訳して表示する（OpenAIのwhisperと，DeepL-APIを使えば簡単にできる）．
+ - 外国語のスピーチを翻訳して表示する（OpenAIのwhisperと，DeepL-APIを使えば簡単にできます）．
 
 ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot00.png)
 ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot01.png)
 
 
 ----
-## 実行方法
+## 実行方法（書くのが面倒なのでかなりテキトウです）
 ```
 git clone https://github.com/takago/on_screen_messenger.git
 cd on_screen_messenger
