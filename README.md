@@ -1,6 +1,7 @@
 # on_screen_messenger
 This tool displays messages on the desktop.
    ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot03.png)
+   ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot04.png)
    
 Qtを使ってスクリーン上にメッセージを自動スクロール表示するツールを開発しました．例によってLinuxで作りましたが，多分Windowsでも動くと思います．
 どのような感じで動くかは動作は以下のビデオを参考にしてください． https://youtu.be/0LAD8-ASEgw
