@@ -19,13 +19,32 @@ Qtを使ってスクリーン上にメッセージを自動スクロール表示
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot02.png)
 
 ----
-## 実行方法（書くのが面倒なのでかなりテキトウです）
-### 準備
+## 動かし方（書くのがメンドウなのでかなりテキトウです）
+### 起動（本体）
+
+```
+sudo apt-get install python3-qtpy
+git clone https://github.com/takago/on_screen_messenger.git
+cd on_screen_messenger
+python ./on_screen_messenger.py &
+（システムトレイ上に常駐する）
+```
+   ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot04.png)
+### メッセージ書き込み例①
+
+```
+echo "Hello" | nc -u localhost 10000 -q0
+fortune | nc -u localhost 10000 -q0
+cowsay Hello | nc -u localhost 10000 -q0
+```
+
+### メッセージ書き込み例②
+
 ```
 conda create -n wp000 -c conda-forge python=3.9 ipython cudatoolkit-dev cudatoolkit cudnn numba numpy pytorch-gpu tqdm more-itertools tiktoken=0.3.1 ffmpeg-python=0.2.0
-
+conda activate wp000
 pip install whisper-mic deepl
-（minicondaなどでPython実行環境を作っておくことを推奨）
+vi $CONDA_PREFIX/lib/python3.9/site-packages/whisper_mic/whisper_mic.py  
 ```
 whisper-mic.pyを修正（一つはバグ対応，もう一つは言語設定）
 ```diff
@@ -50,32 +69,18 @@ whisper-mic.pyを修正（一つはバグ対応，もう一つは言語設定）
          predicted_text = result["text"]
          if not self.verbose:
 ```
-### 起動（本体）
 
 ```
-sudo apt-get install python3-qtpy
-git clone https://github.com/takago/on_screen_messenger.git
-cd on_screen_messenger
-python ./on_screen_messenger.py &
-（システムトレイ上に常駐する）
-```
-   ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot04.png)
-   
-### 動作テスト（UDP:10000ポートに書き込むプログラムなら何でも良い）
-```
-fortune | nc -u localhost 10000 -q0
-cowsay Hello | nc -u localhost 10000 -q0
-
-~/miniconda3/envs/wp000/bin/python demo.py --audio
+python demo.py --audio
 (喋った日本語が，スクリーンに表示される)
 
-~/miniconda3/envs/wp000/bin/python demo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
+python demo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
 (タイプした英語が日本語になって，スクリーンに表示される. keyはDEEPL-APIのキーを指定すること)
 
-~/miniconda3/envs/wp000/bin/python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
+python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
 （喋った日本語が英語になって，スクリーンに表示される．）
 
-~/miniconda3/envs/wp000/bin/python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
+python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
 （喋った日本語が英語になって，スクリーンに表示される．）
 ```
 
