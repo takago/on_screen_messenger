@@ -39,6 +39,7 @@ cowsay Hello | nc -u localhost 10000 -q0
 ```
 
 ### メッセージ書き込み例②
+demo.py（音声入力や翻訳機能）の使い方を説明します．音声入力するときはヘッドセットを使うとよいでしょう．
 
 ```
 conda create -n wp000 -c conda-forge python=3.9 ipython cudatoolkit-dev cudatoolkit cudnn numba numpy pytorch-gpu tqdm more-itertools tiktoken=0.3.1 ffmpeg-python=0.2.0
@@ -84,6 +85,4 @@ python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
 （喋った日本語が英語になって，スクリーンに表示される．）
 ```
 
-----
-## メモ
-whisper-micを使って音声入力するときはヘッドセットを使うとよいかも
+
