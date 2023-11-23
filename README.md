@@ -48,6 +48,7 @@ whisper-mic.pyを修正（一つはバグ対応，もう一つは言語設定）
          if not self.verbose:
 ```
 ### 起動（本体）
+
 ```
 git clone https://github.com/takago/on_screen_messenger.git
 cd on_screen_messenger
@@ -65,7 +66,7 @@ cowsay Hello | nc -u localhost 10000 -q0
 (喋った日本語が，スクリーンに表示される)
 
 ~/miniconda3/envs/wp000/bin/python demo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
-(タイプした英語が日本語になって，スクリーンに表示される)
+(タイプした英語が日本語になって，スクリーンに表示される. keyはDEEPL-APIのキーを指定すること)
 
 ~/miniconda3/envs/wp000/bin/python ./demo.py --mic --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
 （喋った日本語が英語になって，スクリーンに表示される．Python は whisper-micやdeeplが使えるパスを指定すること！）
