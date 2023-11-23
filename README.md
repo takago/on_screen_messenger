@@ -1,6 +1,6 @@
 # on_screen_messenger
 This tool displays messages on the desktop.
-   ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot03.png)
+   ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot03.png)
    
 Qtを使ってスクリーン上にメッセージを自動スクロール表示するツールを開発しました．例によってLinuxで作りましたが，多分Windowsでも動くと思います．
 どのような感じで動くかは動作は以下のビデオを参考にしてください． https://youtu.be/0LAD8-ASEgw
@@ -13,10 +13,10 @@ Qtを使ってスクリーン上にメッセージを自動スクロール表示
 利用例：
  - 緊急地震速報といった重要な情報を表示する．
  - マイクで拾った音を文字起こし（必要に応じて翻訳）して表示する(↓ OpenAIのwhisperや，DeepL-APIを使ってみた例)．
-   - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot00.png)
-   - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot01.png)
+   - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot00.png)
+   - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot01.png)
  - PCで鳴っている音声を文字起こし（↓のように出力デバイスのmonitorを選べば簡単）
-   - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot02.png)
+   - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot02.png)
 
 ----
 ## 実行方法（書くのが面倒なのでかなりテキトウです）
@@ -55,7 +55,7 @@ cd on_screen_messenger
 python ./on_screen_messenger.py &
 （システムトレイ上に常駐する）
 ```
-   ![](https://github.com/takago/on_screen_messenger/blob/main/screenshot04.png)
+   ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot04.png)
    
 ### 動作テスト（UDP:10000ポートに書き込むプログラムなら何でも良い）
 ```
