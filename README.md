@@ -2,7 +2,7 @@
 This tool displays messages on the desktop.
    ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot03.png)
    
-Qtを使ってスクリーン上にメッセージを自動スクロール表示するツールを開発しました．例によってLinuxで作りましたが，多分Windowsでも動くと思います．
+Qtを使ってスクリーン上にメッセージを自動スクロール表示するツールを作りました．例によってLinuxで作りましたが，多分Windowsでも動くと思います．
 どのような感じで動くかは動作は以下のビデオを参考にしてください． https://youtu.be/0LAD8-ASEgw
 
 長所？：
@@ -23,6 +23,7 @@ Qtを使ってスクリーン上にメッセージを自動スクロール表示
 ### 準備
 ```
 pip install whisper-mic deepl
+（minicondaなどでPython実行環境を作っておくことを推奨）
 ```
 whisper-mic.pyを修正（一つはバグ対応，もう一つは言語設定）
 ```diff
