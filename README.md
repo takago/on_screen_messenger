@@ -48,10 +48,9 @@ whisper-mic.pyを修正（一つはバグ対応，もう一つは言語設定）
          if not self.verbose:
 ```
 ### 起動（本体）
+```
 git clone https://github.com/takago/on_screen_messenger.git
 cd on_screen_messenger
-
-```
 python ./on_screen_messenger.py &
 （システムトレイ上に常駐する）
 ```
