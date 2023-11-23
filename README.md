@@ -22,6 +22,8 @@ Qtを使ってスクリーン上にメッセージを自動スクロール表示
 ## 実行方法（書くのが面倒なのでかなりテキトウです）
 ### 準備
 ```
+conda create -n wp000 -c conda-forge python=3.9 ipython cudatoolkit-dev cudatoolkit cudnn numba numpy pytorch-gpu tqdm more-itertools tiktoken=0.3.1 ffmpeg-python=0.2.0
+
 pip install whisper-mic deepl
 （minicondaなどでPython実行環境を作っておくことを推奨）
 ```
@@ -51,6 +53,7 @@ whisper-mic.pyを修正（一つはバグ対応，もう一つは言語設定）
 ### 起動（本体）
 
 ```
+sudo apt-get install python3-qtpy
 git clone https://github.com/takago/on_screen_messenger.git
 cd on_screen_messenger
 python ./on_screen_messenger.py &
@@ -63,17 +66,17 @@ python ./on_screen_messenger.py &
 fortune | nc -u localhost 10000 -q0
 cowsay Hello | nc -u localhost 10000 -q0
 
-~/miniconda3/envs/wp000/bin/python demo.py --mic
+~/miniconda3/envs/wp000/bin/python demo.py --audio
 (喋った日本語が，スクリーンに表示される)
 
 ~/miniconda3/envs/wp000/bin/python demo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
 (タイプした英語が日本語になって，スクリーンに表示される. keyはDEEPL-APIのキーを指定すること)
 
-~/miniconda3/envs/wp000/bin/python ./demo.py --mic --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
-（喋った日本語が英語になって，スクリーンに表示される．Python は whisper-micやdeeplが使えるパスを指定すること！）
+~/miniconda3/envs/wp000/bin/python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
+（喋った日本語が英語になって，スクリーンに表示される．）
 
-~/miniconda3/envs/wp000/bin/python ./demo.py --mic --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
-（喋った日本語が英語になって，スクリーンに表示される．Python は whisper-micやdeeplが使えるパスを指定すること！）
+~/miniconda3/envs/wp000/bin/python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
+（喋った日本語が英語になって，スクリーンに表示される．）
 ```
 
 ----

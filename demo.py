@@ -9,7 +9,7 @@ PYTHON=sys.executable # 現在実行しているPythonのパスを取得する
 parser = argparse.ArgumentParser()
 parser.add_argument('-t', '--translate', choices=['jp2en', 'en2jp', 'none'], default='none', help='翻訳する')
 parser.add_argument('-k', '--key', default='XXXXXXXXXXX', help='DEEPL-APIのキー')
-parser.add_argument('-m', '--mic', action='store_true', help='マイクから入力する')
+parser.add_argument('-a', '--audio', action='store_true', help='オーディオデバイスから入力する')
 parser.add_argument('-p', '--port', default=10000, help='on_screen_messengerのUDPポート番号')
 args = parser.parse_args()
 
@@ -22,7 +22,7 @@ elif args.translate=='en2jp':
     os.environ['DEEPL_API_KEY'] = args.key
     cmd = ' | '.join( [PYTHON+' -u sub/deepl_en2jp.py', cmd])
 
-if args.mic == True:
+if args.audio == True:
     cmd = ' | '.join( [PYTHON+' -u sub/whisper_mic_jp.py' ,cmd] )
 
 print('-'*len(cmd))
