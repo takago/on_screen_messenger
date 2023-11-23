@@ -11,13 +11,14 @@ Qtを使ってスクリーン上にメッセージを自動スクロール表示
  - UDPでテキストを投げ込むだけで，簡単に表示
 
 利用例：
- - 緊急地震速報といった重要な情報を表示する．
  - マイクで拾った音を文字起こし（必要に応じて翻訳）して表示する(↓ OpenAIのwhisperや，DeepL-APIを使ってみた例)．
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot00.png)
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot01.png)
  - PCで鳴っている音声を文字起こし（↓のように出力デバイスのmonitorを選べば簡単）
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot02.png)
-
+ - その他
+   - 地震の速報や，VDT対策メッセージの表示などに使えそうです
+   
 ----
 ## 動かし方（書くのがメンドウなのでかなりテキトウです）
 ### 起動（本体）
