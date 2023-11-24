@@ -65,20 +65,14 @@ class MainWindow(QMainWindow):
         box.addWidget(self.edit)
         frame.setLayout(box)
         self.setCentralWidget(frame)
+        self.SCROLL = True
 
-        # タイマー（文字を動かす）
+        # タイマー
         self.timer0 = QTimer()
         self.timer0.setSingleShot(False)  # 連続 or 1ショットか
         self.timer0.setInterval(10)
-        self.timer0.timeout.connect(self.scroll_message)
+        self.timer0.timeout.connect(self.append_message)
         self.timer0.start()
-
-        # タイマー（受信テキストの追加）
-        self.timer1 = QTimer()
-        self.timer1.setSingleShot(False)  # 連続 or 1ショットか
-        self.timer1.setInterval(100)
-        self.timer1.timeout.connect(self.append_message)
-        self.timer1.start()
 
         # システムトレイの設置
         self.tray = QSystemTrayIcon(QIcon(self.myicon['show']))
@@ -123,24 +117,23 @@ class MainWindow(QMainWindow):
             self.tray.setIcon(QIcon(self.myicon['hide']))
 
     def append_message(self): # キューから取り出して，表示テキストに追加する
+        n = self.edit.verticalScrollBar().value() # 現在のスクロールバー値を退避
         if not q.empty():
-            n = self.edit.verticalScrollBar().value() # 現在のスクロールバー値を退避
+            self.edit.moveCursor(QTextCursor.End, QTextCursor.MoveAnchor) # カーソルを末尾に
             self.edit.setText( self.edit.toPlainText()+q.get() ) # テキストを付け足す
             self.edit.verticalScrollBar().setValue(n) # 退避してあったスクロールバー値を復元
-
-    def scroll_message(self):
-        n = self.edit.verticalScrollBar().value()
-        if n < self.edit.verticalScrollBar().maximum():
-            self.edit.verticalScrollBar().setValue( n+1 ) # 少し進める
+        if self.SCROLL:
+            if n < self.edit.verticalScrollBar().maximum():
+                self.edit.verticalScrollBar().setValue( n+1 ) # 少し進める
 
     def clear_buffer(self, action):
         self.edit.setText('')
 
     def pause_scroll(self, action):
         if action: # チェックされたら
-            self.timer0.stop()
+            self.SCROLL = False
         else:
-            self.timer0.start()
+            self.SCROLL = True
 
 if __name__ == '__main__':
 
