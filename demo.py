@@ -23,7 +23,7 @@ elif args.translate=='en2jp':
     cmd = ' | '.join( [PYTHON+' -u sub/deepl_en2jp.py', cmd])
 
 if args.audio == True:
-    cmd = ' | '.join( [PYTHON+' -u sub/whisper_mic_jp.py' ,cmd] )
+    cmd = ' | '.join( [PYTHON+' -u sub/whisper_mic_jp.py' , 'tee whisper.out',cmd] )
 
 print('-'*len(cmd))
 print(cmd)
