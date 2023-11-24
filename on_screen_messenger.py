@@ -32,14 +32,17 @@ class MainWindow(QMainWindow):
         self.myicon['show']=QPixmap( 32, 32 )
         painter=QPainter(self.myicon['show'])
         painter.eraseRect(0, 0, 32, 32)
-        painter.setPen(Qt.black)
-        painter.setFont( QFont("IPAGothic") )
+        painter.setPen(QColor("#000000"))
+        # painter.setFont( QFont("IPAGothic") )
         painter.drawText( QPoint(16, 16), "あ" )
         painter.end()
-         
+
         self.myicon['hide']=QPixmap( 32, 32 )
         painter=QPainter(self.myicon['hide'])
         painter.eraseRect(0, 0, 32, 32)
+        painter.setPen(QColor("#AAAAAA"))
+        # painter.setFont( QFont("IPAGothic") )
+        painter.drawText( QPoint(16, 16), "あ" )
         painter.end()
 
         self.setWindowIcon(QIcon(self.myicon['show']))
@@ -66,6 +69,14 @@ class MainWindow(QMainWindow):
         frame.setLayout(box)
         self.setCentralWidget(frame)
         self.SCROLL = True
+
+        # 影を付ける
+        if True:
+            effect = QGraphicsDropShadowEffect()
+            effect.setBlurRadius(32)
+            effect.setColor(QColor("#000000"))
+            effect.setOffset(5,5)
+            self.edit.setGraphicsEffect(effect)
 
         # タイマー
         self.timer0 = QTimer()
@@ -99,6 +110,12 @@ class MainWindow(QMainWindow):
         m.addAction(myact2)
         myact2.triggered.connect(self.showdialog)
         app.setQuitOnLastWindowClosed(False) # ダイアログを閉じてもメインプログラムは止めない
+
+        # タスクトレイ（終了）
+        myact3 = QAction('Quit', m)
+        m.addAction(myact3)
+        myact3.triggered.connect(sys.exit)
+
 
     def showdialog(self):
         mymsg = QMessageBox()
