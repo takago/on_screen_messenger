@@ -48,7 +48,8 @@ cowsay Hello | nc -u localhost 10000 -q0
 
 
 ```
-conda create -n wp000 -c conda-forge python=3.9 ipython cudatoolkit-dev cudatoolkit cudnn numba numpy pytorch-gpu tqdm more-itertools tiktoken=0.3.1 ffmpeg-python=0.2.0 pyqt qtpy alsa-plugins
+conda create -n wp000 -c conda-forge python=3.9 ipython cudatoolkit-dev cudatoolkit cudnn numba numpy pytorch-gpu tqdm more-itertools tiktoken=0.3.1 ffmpeg-python=0.2.0 pyqt qtpy pyaudio alsa-plugins
+
 conda activate wp000
 pip install whisper-mic deepl
 vi $CONDA_PREFIX/lib/python3.9/site-packages/whisper_mic/whisper_mic.py  
