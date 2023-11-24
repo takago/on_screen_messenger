@@ -10,6 +10,9 @@ Qtを使ってスクリーン上にメッセージを自動スクロール表示
  - 最前面に表示（何かをフルスクリーン表示していてもその上に描画される）.
  - UDPでテキストを投げ込むだけで，簡単に表示
 
+既知のバグ：
+ - たまにスクロールが乱れるときがあります（調査中）．とりあえずシステムトレイのアイコンを右クリックして，「Clear Buffer」を選ぶと治ります．
+
 利用例：
  - マイクで拾った音を文字起こし（必要に応じて翻訳）して表示する(↓ OpenAIのwhisperや，DeepL-APIを使ってみた例)．
    - ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot00.png)
