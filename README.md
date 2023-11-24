@@ -79,7 +79,7 @@ whisper-mic.pyを2箇所書き換える（一つはバグ対応，もう一つ�
 使い方は以下のとおりです． 音声入力するときはヘッドセットを使うとよいでしょう．
 ```
 python demo.py --audio
-(喋った日本語が，スクリーンに表示される)
+(喋った日本語が，スクリーンに表示される．初回はwhisperの学習モデルsmallのロードが始まります)
 
 python demo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
 (タイプした英語が日本語になって，スクリーンに表示される. keyはDEEPL-APIのキーを指定すること)
@@ -91,4 +91,4 @@ python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
 （喋った日本語が英語になって，スクリーンに表示される．keyはDEEPL-APIのキーを指定すること）
 ```
 
-
+GPUメモリに余裕がある場合は， on_screen_messenger/sub/whisper_mic_jp.py を編集して，model='small' を model='medium' にするとよいでしょう．
