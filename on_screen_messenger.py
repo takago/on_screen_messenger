@@ -22,6 +22,10 @@ def net_thread():
         (recv_text, adr) = s.recvfrom(65535)
         q.put( recv_text.decode('utf-8') ) # キューに追加する
 
+# スタイルシート
+def mystyle(x):
+    return "background: rgba(0,0,0,"+str(x)+"%); color: rgba(255,0,0,60%); font-size: 48pt; border-radius: 0px; border: 0px solid rgba(255,0,0,0%);"
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -64,7 +68,7 @@ class MainWindow(QMainWindow):
         self.edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) # スクロールバーを表示しない
         self.edit.setCursorWidth(0) # カーソルを消す
         self.edit.setText('\n\n(o_o)/\n')
-        self.edit.setStyleSheet("background: rgba(0,0,0,0%); color: rgba(255,0,0,60%); font-size: 48pt; border-radius: 0px; border: 2px solid rgba(255,0,0,0%);")
+        self.edit.setStyleSheet(mystyle(0))
         box.addWidget(self.edit)
         frame.setLayout(box)
         self.setCentralWidget(frame)
@@ -85,44 +89,79 @@ class MainWindow(QMainWindow):
         self.timer0.timeout.connect(self.append_message)
         self.timer0.start()
 
+        #-----------------------------------------------------
         # システムトレイの設置
+
         self.tray = QSystemTrayIcon(QIcon(self.myicon['show']))
-        m = QMenu() # システムトレイで表示させたいメニュー
+        m = QMenu() # システムトレイで表示させたいメニュー（コンテクストメニュー）
         self.tray.setContextMenu(m)
         self.tray.show()
         self.tray.setToolTip('On Screen Messenger')
         self.SHOW=True
         self.tray.activated.connect(self.onActivated)       # クリックされたら
 
-        # タスクトレイ（バッファのクリア）
+        # メニュー項目（バッファのクリア）
         myact0 = QAction('Clear Buffer', m)
         m.addAction(myact0)
         myact0.triggered.connect(self.clear_buffer)
 
-        # タスクトレイ（一時停止）
+        # メニュー項目（一時停止）
         myact1 = QAction('Pause', m, checkable=True)
         myact1.setChecked(False)              # 選択状態にしておく
         m.addAction(myact1)
         myact1.triggered.connect(self.pause_scroll)
 
-        # タスクトレイ（ダイアログ）
-        myact2 = QAction('Information', m)
+        # メニュー項目（スライダ）
+        myact2 = QAction('trasnparency', m)
         m.addAction(myact2)
-        myact2.triggered.connect(self.showdialog)
+        myact2.triggered.connect(self.showslider)
+
+        # セパレータ
+        m.addSeparator()
+
+        # メニュー項目（ダイアログ）
+        myact3 = QAction('Information', m)
+        m.addAction(myact3)
+        myact3.triggered.connect(self.showdialog)
         app.setQuitOnLastWindowClosed(False) # ダイアログを閉じてもメインプログラムは止めない
 
-        # タスクトレイ（終了）
-        myact3 = QAction('Quit', m)
-        m.addAction(myact3)
-        myact3.triggered.connect(sys.exit)
+        # セパレータ
+        m.addSeparator()
 
+        # タスクトレイ
+        myact4 = QAction('Quit', m)
+        m.addAction(myact4)
+        myact4.triggered.connect(sys.exit)
+
+        #-----------------------------------------------------
+
+        # スライダー
+        self.slider = QSlider(Qt.Orientation.Horizontal)
+        self.slider.setValue(0)
+        self.slider.setRange(0,30)
+        self.slider.setSingleStep(1)
+        self.slider.setPageStep(10)
+        self.slider.valueChanged.connect(self.slider_changed)
+        self.slider.setWindowIcon(QIcon(self.myicon['show']))
+        self.slider.setWindowTitle('Trasnparency Setting')
+
+        #-----------------------------------------------------
+
+        # メッセージボックス
+        self.mymsg = QMessageBox()
+        self.mymsg.setIcon(QMessageBox.Information)
+        self.mymsg.setText("On-Screen-Messenger\nCopyright 2023 TAKAGO LAB.")
+        self.mymsg.setWindowTitle("About this application")
+        self.mymsg.setWindowIcon(QIcon(self.myicon['show']))
+
+    def slider_changed(self,value):
+        self.edit.setStyleSheet(mystyle(value))
+
+    def showslider(self, action):
+        self.slider.show()  # スライダーを表示
 
     def showdialog(self):
-        mymsg = QMessageBox()
-        mymsg.setIcon(QMessageBox.Information)
-        mymsg.setText("On-Screen-Messenger\nCopyright 2023 TAKAGO LAB.")
-        mymsg.setWindowTitle("About this application")
-        mymsg.exec()
+        self.mymsg.show()
 
     def onActivated(self, reason):
         self.SHOW = not self.SHOW
