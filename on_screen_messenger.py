@@ -27,15 +27,22 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
 
         # アイコンを作成
-        myicon=QPixmap( 32, 32 )
-        painter=QPainter(myicon)
+        self.myicon=dict()
+
+        self.myicon['show']=QPixmap( 32, 32 )
+        painter=QPainter(self.myicon['show'])
         painter.eraseRect(0, 0, 32, 32)
         painter.setPen(Qt.black)
-        painter.setFont( QFont("Arial") )
+        painter.setFont( QFont("IPAGothic") )
         painter.drawText( QPoint(16, 16), "あ" )
         painter.end()
+         
+        self.myicon['hide']=QPixmap( 32, 32 )
+        painter=QPainter(self.myicon['hide'])
+        painter.eraseRect(0, 0, 32, 32)
+        painter.end()
 
-        self.setWindowIcon(QIcon(myicon))
+        self.setWindowIcon(QIcon(self.myicon['show']))
         self.setGeometry(0, 0, screen_size.width(), screen_size.height()//3)
 
         win_flags = Qt.FramelessWindowHint        # フレームなし．
@@ -74,7 +81,7 @@ class MainWindow(QMainWindow):
         self.timer1.start()
 
         # システムトレイの設置
-        self.tray = QSystemTrayIcon(QIcon(myicon))
+        self.tray = QSystemTrayIcon(QIcon(self.myicon['show']))
         m = QMenu() # システムトレイで表示させたいメニュー
         self.tray.setContextMenu(m)
         self.tray.show()
@@ -110,8 +117,10 @@ class MainWindow(QMainWindow):
         self.SHOW = not self.SHOW
         if self.SHOW: # チェックされたら
             w.show() # メインウィンドウを表示する
+            self.tray.setIcon(QIcon(self.myicon['show']))
         else:
             w.hide() # メインウィンドウを表示しない（タスクトレイのみになる）
+            self.tray.setIcon(QIcon(self.myicon['hide']))
 
     def append_message(self): # キューから取り出して，表示テキストに追加する
         if not q.empty():
