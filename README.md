@@ -31,7 +31,7 @@ python ./on_screen_messenger.py &
 （システムトレイ上に常駐する）
 ```
    ![](https://github.com/takago/on_screen_messenger/blob/main/screenshots/screenshot04.png)
-### メッセージ書き込み例①
+### メッセージ書き込み例 ①
 
 ```
 echo "Hello" | nc -u localhost 10000 -q0
@@ -39,8 +39,13 @@ fortune | nc -u localhost 10000 -q0
 cowsay Hello | nc -u localhost 10000 -q0
 ```
 
-### メッセージ書き込み例②
-demo.py（音声入力や翻訳機能）の使い方を説明します．音声入力するときはヘッドセットを使うとよいでしょう．
+### メッセージ書き込み例 ② 
+おまけで作った demo.py（音声入力・翻訳）の実行環境の作り方を説明します． demo.pyは，whisper-micやdeepl-apiの入出力を単純にパイプでつないで，最後にUDP:10000ポートに書き出すという極めて単純な仕様です．
+
+ - MiniCondaなどのconda環境を使います．
+ - Deepl-APIキーが必要です．
+ - NvidiaのGPU環境が必要です(GPUメモリ4GB以上)．
+
 
 ```
 conda create -n wp000 -c conda-forge python=3.9 ipython cudatoolkit-dev cudatoolkit cudnn numba numpy pytorch-gpu tqdm more-itertools tiktoken=0.3.1 ffmpeg-python=0.2.0 pyqt qtpy
@@ -48,7 +53,7 @@ conda activate wp000
 pip install whisper-mic deepl
 vi $CONDA_PREFIX/lib/python3.9/site-packages/whisper_mic/whisper_mic.py  
 ```
-whisper-mic.pyを修正（一つはバグ対応，もう一つは言語設定）
+whisper-mic.pyを2箇所書き換える（一つはバグ対応，もう一つは言語設定）
 ```diff
 --- whisper_mic.py.org	2023-11-23 22:08:17.192311969 +0900
 +++ whisper_mic.py	2023-11-23 22:11:30.226769425 +0900
@@ -71,7 +76,7 @@ whisper-mic.pyを修正（一つはバグ対応，もう一つは言語設定）
          predicted_text = result["text"]
          if not self.verbose:
 ```
-
+使い方は以下のとおりです． 音声入力するときはヘッドセットを使うとよいでしょう．
 ```
 python demo.py --audio
 (喋った日本語が，スクリーンに表示される)
@@ -80,10 +85,10 @@ python demo.py --translate=en2jp --key='XXXXXXXXXXXXXXXXXXX'
 (タイプした英語が日本語になって，スクリーンに表示される. keyはDEEPL-APIのキーを指定すること)
 
 python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
-（喋った日本語が英語になって，スクリーンに表示される．）
+（喋った日本語が英語になって，スクリーンに表示される．keyはDEEPL-APIのキーを指定すること）
 
 python ./demo.py --audio --translate=jp2en --key='XXXXXXXXXXXXXXXXXXX'
-（喋った日本語が英語になって，スクリーンに表示される．）
+（喋った日本語が英語になって，スクリーンに表示される．keyはDEEPL-APIのキーを指定すること）
 ```
 
 
