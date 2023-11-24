@@ -120,7 +120,7 @@ class MainWindow(QMainWindow):
         n = self.edit.verticalScrollBar().value() # 現在のスクロールバー値を退避
         if not q.empty():
             self.edit.moveCursor(QTextCursor.End, QTextCursor.MoveAnchor) # カーソルを末尾に
-            self.edit.setText( self.edit.toPlainText()+q.get() ) # テキストを付け足す
+            self.edit.insertPlainText( q.get() ) # テキストを付け足す
             self.edit.verticalScrollBar().setValue(n) # 退避してあったスクロールバー値を復元
         if self.SCROLL:
             if n < self.edit.verticalScrollBar().maximum():
