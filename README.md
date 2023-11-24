@@ -45,9 +45,9 @@ cowsay Hello | nc -u localhost 10000 -q0
 ### メッセージ書き込み例 ② 
 おまけで作った demo.py（音声入力・翻訳）の実行環境の作り方を説明します． demo.pyは，whisper-micやdeepl-apiの入出力を単純にパイプでつないで，最後にUDP:10000ポートに書き出すという極めて単純な仕様です．
 
- - MiniCondaなどのconda環境を使います．
- - Deepl-APIキーが必要です．
- - NvidiaのGPU環境が必要です(GPUメモリ4GB以上)．
+ - ここではMiniCondaを使った方法を紹介します．
+ - 音声入力では whisper-micを使うため，NvidiaのGPU環境が必要です．
+ - 翻訳処理には Deepl-APIキーが必要です（ネット接続が必要）．
 
 
 ```
