@@ -22,10 +22,6 @@ def net_thread():
         (recv_text, adr) = s.recvfrom(65535)
         q.put( recv_text.decode('utf-8') ) # キューに追加する
 
-# スタイルシート
-def mystyle(x):
-    return "background: rgba(0,0,0,"+str(x)+"%); color: rgba(255,0,0,60%); font-size: 48pt; border-radius: 0px; border: 0px solid rgba(255,0,0,0%);"
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -60,6 +56,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowFlags(win_flags)
         self.setAttribute(Qt.WA_TranslucentBackground)
+
         frame = QFrame(parent=self)
         frame.setStyleSheet("QFrame {background: rgba(0,0,0,0%)}")
 
@@ -68,11 +65,16 @@ class MainWindow(QMainWindow):
         self.edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff) # スクロールバーを表示しない
         self.edit.setCursorWidth(0) # カーソルを消す
         self.edit.setText('\n\n(o_o)/\n')
-        self.edit.setStyleSheet(mystyle(0))
         box.addWidget(self.edit)
         frame.setLayout(box)
         self.setCentralWidget(frame)
         self.SCROLL = True
+
+        # 色
+        self.col=dict()
+        self.col['fg']='rgba(255,0,0,60%)' # テキストのカラー
+        self.col['bg']='rgba(0,0,0,0%)'    # 背景色のカラー
+        self.update_mystyle()
 
         # 影を付ける
         if True:
@@ -111,27 +113,32 @@ class MainWindow(QMainWindow):
         m.addAction(myact1)
         myact1.triggered.connect(self.pause_scroll)
 
-        # メニュー項目（スライダ）
+        # メニュー項目（背景の透明度を調整するスライダ）
         myact2 = QAction('trasnparency', m)
         m.addAction(myact2)
         myact2.triggered.connect(self.showslider)
+
+        # メニュー項目（文字色を選択するスライダ）
+        myact3 = QAction('font-color', m)
+        m.addAction(myact3)
+        myact3.triggered.connect(self.showcolsel)
 
         # セパレータ
         m.addSeparator()
 
         # メニュー項目（ダイアログ）
-        myact3 = QAction('Information', m)
-        m.addAction(myact3)
-        myact3.triggered.connect(self.showdialog)
+        myact4 = QAction('Information', m)
+        m.addAction(myact4)
+        myact4.triggered.connect(self.showdialog)
         app.setQuitOnLastWindowClosed(False) # ダイアログを閉じてもメインプログラムは止めない
 
         # セパレータ
         m.addSeparator()
 
         # タスクトレイ
-        myact4 = QAction('Quit', m)
-        m.addAction(myact4)
-        myact4.triggered.connect(sys.exit)
+        myact5 = QAction('Quit', m)
+        m.addAction(myact5)
+        myact5.triggered.connect(sys.exit)
 
         #-----------------------------------------------------
 
@@ -154,8 +161,27 @@ class MainWindow(QMainWindow):
         self.mymsg.setWindowTitle("About this application")
         self.mymsg.setWindowIcon(QIcon(self.myicon['show']))
 
+    # スタイルシート
+    def update_mystyle(self):
+        txt='background: '+self.col['bg']+';' # 背景色
+        txt+='color: '+self.col['fg']+';'     # 文字色
+        txt+='font-size: 24pt;' # フォントサイズ
+        txt+='border-radius: 0px;'
+        txt+='border: 0px solid rgba(255,0,0,0%);'
+        self.edit.setStyleSheet(txt)
+
+    def showcolsel(self,action):
+        color = QColorDialog.getColor()
+        if color.isValid():
+            #print(color.name())
+            #print(color.rgba())
+            r,g,b=color.red(), color.green(), color.blue()
+            self.col['fg']='rgba(%d,%d,%d,60%%)' % (r,g,b)
+            self.update_mystyle()
+
     def slider_changed(self,value):
-        self.edit.setStyleSheet(mystyle(value))
+        self.col['bg']='rgba(0,0,0,%d%%)' % value
+        self.update_mystyle()
 
     def showslider(self, action):
         self.slider.show()  # スライダーを表示
