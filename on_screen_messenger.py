@@ -74,6 +74,11 @@ class MainWindow(QMainWindow):
         self.col=dict()
         self.col['fg']='rgba(255,0,0,60%)' # テキストのカラー
         self.col['bg']='rgba(0,0,0,0%)'    # 背景色のカラー
+        self.font=dict()
+        self.font['family']='Ubuntu Mono'
+        self.font['size']=48
+
+        # スタイルを反映
         self.update_mystyle()
 
         # 影を付ける
@@ -123,22 +128,28 @@ class MainWindow(QMainWindow):
         m.addAction(myact3)
         myact3.triggered.connect(self.showcolsel)
 
+        # メニュー項目（フォント選択ダイアログ）
+        myact4 = QAction('font', m)
+        m.addAction(myact4)
+        myact4.triggered.connect(self.showfontsel)
+
+
         # セパレータ
         m.addSeparator()
 
         # メニュー項目（ダイアログ）
-        myact4 = QAction('Information', m)
-        m.addAction(myact4)
-        myact4.triggered.connect(self.showdialog)
+        myact5 = QAction('Information', m)
+        m.addAction(myact5)
+        myact5.triggered.connect(self.showdialog)
         app.setQuitOnLastWindowClosed(False) # ダイアログを閉じてもメインプログラムは止めない
 
         # セパレータ
         m.addSeparator()
 
         # タスクトレイ
-        myact5 = QAction('Quit', m)
-        m.addAction(myact5)
-        myact5.triggered.connect(sys.exit)
+        myact6 = QAction('Quit', m)
+        m.addAction(myact6)
+        myact6.triggered.connect(sys.exit)
 
         #-----------------------------------------------------
 
@@ -165,9 +176,11 @@ class MainWindow(QMainWindow):
     def update_mystyle(self):
         txt='background: '+self.col['bg']+';' # 背景色
         txt+='color: '+self.col['fg']+';'     # 文字色
-        txt+='font-size: 24pt;' # フォントサイズ
+        txt+='font-family: '+self.font['family']+';' # フォント
+        txt+='font-size: '+str(self.font['size'])+'pt;' # フォントサイズ
         txt+='border-radius: 0px;'
         txt+='border: 0px solid rgba(255,0,0,0%);'
+        # print(txt)
         self.edit.setStyleSheet(txt)
 
     def showcolsel(self,action):
@@ -178,6 +191,19 @@ class MainWindow(QMainWindow):
             r,g,b=color.red(), color.green(), color.blue()
             self.col['fg']='rgba(%d,%d,%d,60%%)' % (r,g,b)
             self.update_mystyle()
+
+    def showfontsel(self,action):
+
+        current_font = QFont( self.font['family'], pointSize=self.font['size'] )
+        font, ok=QFontDialog.getFont(current_font)
+        if ok: # フォントが選択されたら
+            self.font['family']=font.family()
+            self.font['size']=font.pointSize()
+            # print(self.font['family'],self.font['size'])
+            self.update_mystyle()
+            m=self.edit.verticalScrollBar().maximum()
+            self.edit.verticalScrollBar().setValue( m ) 
+
 
     def slider_changed(self,value):
         self.col['bg']='rgba(0,0,0,%d%%)' % value
